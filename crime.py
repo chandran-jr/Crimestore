@@ -19,6 +19,24 @@ class Crime:
         
         
         
+        def close():
+            close =  tkinter.messagebox.askyesno("CRIME RECORD MANAGEMENT SYSTEM", "Are you sure?")
+            if close>0:
+                root.destroy()
+                return 
+                
+                
+                
+        def clear():
+            self.txtcID.delete(0,END)
+            self.txtcName.delete(0,END)
+            self.txtcStname.delete(0,END)
+            self.txtcCrime.delete(0,END)
+            self.txtcPlace.delete(0,END)
+            self.txtcCitname.delete(0,END)
+            
+        
+        
         
         
         
@@ -158,19 +176,19 @@ class Crime:
         self.buttonShowData =  Button(OperationFrame, text = "Show", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonShowData.grid(row=0,column=1)
         
-        self.buttonClear =  Button(OperationFrame, text = "Clear", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
-        self.buttonClear.grid(row=0,column=2)
+        self.buttonClear =  Button(OperationFrame, text = "Clear", font=('arial', 18, 'bold'), height = 1, width=10,bd=4, command=clear)
+        self.buttonClear.grid(row=0,column=4)
         
         self.buttonDelete =  Button(OperationFrame, text = "Delete", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
-        self.buttonDelete.grid(row=0,column=3)
+        self.buttonDelete.grid(row=0,column=5)
         
         self.buttonSearch =  Button(OperationFrame, text = "Search", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
-        self.buttonSearch.grid(row=0,column=4)
+        self.buttonSearch.grid(row=0,column=2)
         
         self.buttonUpdate =  Button(OperationFrame, text = "Update", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
-        self.buttonUpdate.grid(row=0,column=5)
+        self.buttonUpdate.grid(row=0,column=3)
         
-        self.buttonClose =  Button(OperationFrame, text = "Close", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
+        self.buttonClose =  Button(OperationFrame, text = "Close", font=('arial', 18, 'bold'), height = 1, width=10,bd=4,command=close)
         self.buttonClose.grid(row=0,column=6)
         
         
