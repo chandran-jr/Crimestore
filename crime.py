@@ -201,7 +201,7 @@ class Database:
         cur = con.cursor()
         query = "select * from crime"
         cur.execute(query)
-        cur.fetchall()
+        rows = cur.fetchall()
         con.close()
         print("Database: Show method finished\n")
         return rows
@@ -223,26 +223,27 @@ class Database:
         print("Database: Search method called")
         con = sqlite3.connect("inventory.db")
         cur = con.cursor()
-        cur.execute("select * from crime where cId=? or cName=? or cStname=? or cCrime=? or cCitname=?")
+        cur.execute("select * from crime where cId=? or cName=? or cStname=? or cCrime=? or cCitname=? or cPlace=?")
+        row = cur.fetchall()
+        con.close()
+        print("Database: Search method finished")
+        return row
+    
+    
+    
+    
+    def update(self,cId="", cName="", cStname="", cCrime="", cPlace="", cCitname=""):
+        print("Database: Update method called")
+        con = sqlite3.connect("inventory.db")
+        cur = con.cursor()
+        cur.execute("update crime set cId=? or cName=? or cStname=? or cCrime=? or cPlace=? or cCitname=? where cId=?",(cId, cName, cStname, cCrime, cPlace, cCitname,cId))
+        con.commit()
+        con.close()
+        print(cId, "Database: Update method finished\n")
         
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-          
+                 
  
 if __name__== '__main__':
     root = Tk()
     application = Crime(root)
     root.mainloop()
-    
-    
-    
-    
-    
