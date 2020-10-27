@@ -1,6 +1,10 @@
 class Crime:
     def __init__(self,root):
         
+        
+        p = Database()
+        p.conn()
+        
         self.root = root
         self.root.title("CRIME RECORD MANAGEMENT SYSTEM")
         self.root.geometry("1325x690")
@@ -12,6 +16,12 @@ class Crime:
         cCrime = StringVar()
         cPlace=StringVar()
         cCitname=StringVar()
+        
+        
+        
+        
+        
+        
 
         
         MainFrame=Frame(self.root,bg="red")
@@ -241,9 +251,29 @@ class Database:
         con.close()
         print(cId, "Database: Update method finished\n")
         
-                 
+        
+
+        
+        
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
  
 if __name__== '__main__':
     root = Tk()
     application = Crime(root)
     root.mainloop()
+    
+    
+    
+    
+    
