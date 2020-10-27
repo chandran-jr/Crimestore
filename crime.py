@@ -142,26 +142,43 @@ class Product:
         
         
         
-        self.buttonSaveData =  Button(OperationFrame, text = "Save", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonSaveData =  Button(OperationFrame, text = "Save", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonSaveData.grid(row=0,column=0)
         
-        self.buttonShowData =  Button(OperationFrame, text = "Show", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonShowData =  Button(OperationFrame, text = "Show", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonShowData.grid(row=0,column=1)
         
-        self.buttonClear =  Button(OperationFrame, text = "Clear", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonClear =  Button(OperationFrame, text = "Clear", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonClear.grid(row=0,column=2)
         
-        self.buttonDelete =  Button(OperationFrame, text = "Delete", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonDelete =  Button(OperationFrame, text = "Delete", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonDelete.grid(row=0,column=3)
         
-        self.buttonSearch =  Button(OperationFrame, text = "Search", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonSearch =  Button(OperationFrame, text = "Search", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonSearch.grid(row=0,column=4)
         
-        self.buttonUpdate =  Button(OperationFrame, text = "Update", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonUpdate =  Button(OperationFrame, text = "Update", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonUpdate.grid(row=0,column=5)
         
-        self.buttonClose =  Button(OperationFrame, text = "Close", font=('arial', 16, 'bold'), height = 1, width=10,bd=4)
+        self.buttonClose =  Button(OperationFrame, text = "Close", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
         self.buttonClose.grid(row=0,column=6)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+class Database:
+    def conn(self):
+        print("Database: Connection method called")
+        con = sqlite3.connect("inventory.db")
+        cur = con.cur()
+        cur.execute("create table is not exists crime")
         
         
         
@@ -177,3 +194,8 @@ if __name__== '__main__':
     root = Tk()
     application = Product(root)
     root.mainloop()
+    
+    
+    
+    
+    
