@@ -1,4 +1,4 @@
-class Product:
+class Crime:
     def __init__(self,root):
         
         self.root = root
@@ -167,8 +167,7 @@ class Product:
         
         
         
-        
-        
+
         
         
         
@@ -177,22 +176,70 @@ class Database:
     def conn(self):
         print("Database: Connection method called")
         con = sqlite3.connect("inventory.db")
-        cur = con.cur()
-        cur.execute("create table is not exists crime")
+        cur = con.cursor()
+        query = "create table if not exists crime(cId integer primary key,cName text, cStname text, cCrime text, cPlace text, cCitname text)"
+        cur.execute(query)
+        con.commit()
+        con.close()
+        print("Database: Connection method finished\n")
+        
+        
+    def insert(self, cId, cName, cStname, cCrime, cPlace, cCitname):
+        print("Database: Insert method called")
+        con = sqlite3.connect("inventory.db")
+        cur = con.cursor()
+        query =  "insert into crime values(?,?,?,?,?,?)"
+        cur.execute(query, (cId,cName,cStname,cCrime,cPlace,cCitname))
+        con.commit()
+        con.close()
+        print("Database: Insert method finished\n")
+        
+        
+    def show(self):
+        print("Database: Show method called")
+        con = sqlite3.connect("inventory.db")
+        cur = con.cursor()
+        query = "select * from crime"
+        cur.execute(query)
+        cur.fetchall()
+        con.close()
+        print("Database: Show method finished\n")
+        return rows
+    
+    
+    
+    
+    def delete(self,cId):
+        print("Database: Delete method called", cId)
+        con = sqlite3.connect("inventory.db")
+        cur = con.cursor()
+        cur.execute("delete from crime where cId =?", (cId,))
+        con.commit()
+        con.close()
+        print(cId, "Database: Delete method finished\n")
+        
+        
+    def search(self,cId="", cName="", cStname="", cCrime="", cPlace="", cCitname=""):
+        print("Database: Search method called")
+        con = sqlite3.connect("inventory.db")
+        cur = con.cursor()
+        cur.execute("select * from crime where cId=? or cName=? or cStname=? or cCrime=? or cCitname=?")
+        
+            
         
         
         
         
         
-
-        
-
         
         
+        
+        
+          
  
 if __name__== '__main__':
     root = Tk()
-    application = Product(root)
+    application = Crime(root)
     root.mainloop()
     
     
