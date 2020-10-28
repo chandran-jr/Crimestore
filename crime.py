@@ -35,11 +35,83 @@ class Crime:
             self.txtcPlace.delete(0,END)
             self.txtcCitname.delete(0,END)
             
-        
-        
-        
-        
-        
+            
+            
+        def insert():
+            if(len(cId.get())!=0):
+                p.insert(cId.get(),cName.get(), cStname.get(), cCrime.get(), cPlace.get(), cCitname.get())
+                
+                crimeList.delete(0,END)
+                crimeList.insert(END,cId.get(),cName.get(), cStname.get(), cCrime.get(), cPlace.get(), cCitname.get())
+                showlist()
+                
+            else:
+                tkinter.messagebox.askyesno("CRIME RECORD MANAGEMENT SYSTEM", "Enter Crime ID atleast")
+                
+                
+                
+                
+                
+        def showlist():
+            crimeList.delete(0,END)
+            for row in p.show():
+                crimeList.insert(END,row,str(""))
+                
+                
+                
+        def crimerec(event):
+            global cd
+            
+            searchPd = crimeList.curselection()[0]
+            cd = crimeList.get(searchPd)
+            
+            self.txtcID.delete(0,END)
+            self.txtcID.insert(END,cd[0])
+            
+            self.txtcName.delete(0,END)
+            self.txtcName.insert(END,cd[1])
+            
+            self.txtcStname.delete(0,END)
+            self.txtcStname.insert(END,cd[2])
+            
+            self.txtcCrime.delete(0,END)
+            self.txtcCrime.insert(END,cd[3])
+            
+            self.txtcPlace.delete(0,END)
+            self.txtcPlace.insert(END,cd[4])
+            
+            self.txtcCitname.delete(0,END)
+            self.txtcCitname.insert(END,cd[5])
+            
+            
+            
+        def delete():
+            if(len(cId.get())!=0):
+                p.delete(cd[0])
+                clear()
+                showlist()
+            
+            
+            
+        def search():
+            crimeList.delete(0,END)
+            for row in p.search(cId.get(),cName.get(), cStname.get(), cCrime.get(), cPlace.get(), cCitname.get()):
+                crimeList.insert(END,row,str(""))
+                
+                
+                
+        def update():
+            if(len(cId.get())!=0):
+                p.delete(pd[0])
+            if(len(cId.get())!=0):
+                p.insert(cId.get(),cName.get(), cStname.get(), cCrime.get(), cPlace.get(), cCitname.get())
+                crimeList.delete(0,END)
+            crimeList.insert(END,(cId.get(),cName.get(), cStname.get(), cCrime.get(), cPlace.get(), cCitname.get()))
+            
+            
+            
+            
+            
 
         
         MainFrame=Frame(self.root,bg="red")
@@ -161,7 +233,10 @@ class Crime:
         
         
         
+        
         crimeList = Listbox(RightBodyFrame, width=40, height=16, font=('arial', 12, 'bold'), yscrollcommand = scroll.set)
+        
+        crimeList.bind('<<ListboxSelect>>', crimerec)
         
         crimeList.grid(row=0, column=0,padx=8)
         
@@ -170,19 +245,19 @@ class Crime:
         
         
         
-        self.buttonSaveData =  Button(OperationFrame, text = "Save", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
+        self.buttonSaveData =  Button(OperationFrame, text = "Save", font=('arial', 18, 'bold'), height = 1, width=10,bd=4,command=insert)
         self.buttonSaveData.grid(row=0,column=0)
         
-        self.buttonShowData =  Button(OperationFrame, text = "Show", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
+        self.buttonShowData =  Button(OperationFrame, text = "Show", font=('arial', 18, 'bold'), height = 1, width=10,bd=4, command=showlist)
         self.buttonShowData.grid(row=0,column=1)
         
         self.buttonClear =  Button(OperationFrame, text = "Clear", font=('arial', 18, 'bold'), height = 1, width=10,bd=4, command=clear)
         self.buttonClear.grid(row=0,column=4)
         
-        self.buttonDelete =  Button(OperationFrame, text = "Delete", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
+        self.buttonDelete =  Button(OperationFrame, text = "Delete", font=('arial', 18, 'bold'), height = 1, width=10,bd=4,command=delete)
         self.buttonDelete.grid(row=0,column=5)
         
-        self.buttonSearch =  Button(OperationFrame, text = "Search", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
+        self.buttonSearch =  Button(OperationFrame, text = "Search", font=('arial', 18, 'bold'), height = 1, width=10,bd=4,command=search)
         self.buttonSearch.grid(row=0,column=2)
         
         self.buttonUpdate =  Button(OperationFrame, text = "Update", font=('arial', 18, 'bold'), height = 1, width=10,bd=4)
@@ -251,7 +326,7 @@ class Database:
         print("Database: Search method called")
         con = sqlite3.connect("inventory.db")
         cur = con.cursor()
-        cur.execute("select * from crime where cId=? or cName=? or cStname=? or cCrime=? or cCitname=? or cPlace=?")
+        cur.execute("select * from crime where cId=? or cName=? or cStname=? or cCrime=? or cCitname=? or cPlace=?",(cId,cName,cStname,cCrime,cPlace,cCitname))
         row = cur.fetchall()
         con.close()
         print("Database: Search method finished")
@@ -272,20 +347,7 @@ class Database:
         
 
         
-        
-        
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-          
- 
+       
 if __name__== '__main__':
     root = Tk()
     application = Crime(root)
