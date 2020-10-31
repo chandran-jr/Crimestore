@@ -1,3 +1,9 @@
+from tkinter import *
+
+import tkinter.messagebox
+from tkinter import messagebox as ms
+import sqlite3
+
 with sqlite3.connect('quit.db') as db:
     c = db.cursor()
 
