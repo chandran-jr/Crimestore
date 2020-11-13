@@ -13,6 +13,6 @@ Run this code in a <a href="https://jupyter.org/">Jupyter Notebook</a> and also 
 
 ## GUI
 
-<img src="images/crima.PNG" width = "300px" height = "auto">
+<img src="images/crima.PNG" width = "900px" height = "auto">
 
 
