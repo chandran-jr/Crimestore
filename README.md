@@ -8,4 +8,4 @@ Run this code in a <a href="https://jupyter.org/">Jupyter Notebook</a> and also 
 
 ## Table viewed in SQLite
 
-<img src="images/data.jpeg" width = "300px" height = "auto">
+<img src="images/data.PNG" width = "300px" height = "auto">
