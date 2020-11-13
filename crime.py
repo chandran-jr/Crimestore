@@ -14,7 +14,7 @@ class Crime:
         self.root = root
         self.root.title("CRIME RECORD MANAGEMENT SYSTEM")
         self.root.geometry("1325x690")
-        self.root.config(bg="yellow")
+        self.root.config(bg="blue")
 
         cId = StringVar()
         cName = StringVar()
@@ -359,6 +359,3 @@ if __name__== '__main__':
     root = Tk()
     application = Crime(root)
     root.mainloop()
-    
-    
-    
