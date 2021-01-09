@@ -1,5 +1,5 @@
 # crime-database
-A python + sqlite3 database management system using tkinter
+A python + sqlite3 database management system using tkinter(a Python GUI library)
 
 This is a mini project done as a part of Application Software Development for B.Tech CSE under KTU.
 
